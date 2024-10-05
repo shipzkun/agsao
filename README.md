@@ -13,6 +13,7 @@ This is intended to run inside modern browsers. The following modern JS features
 - JS classes
 - JS private class features
 - anonymous functions
+- Crypto
 
 I personally tested this in latest versions of Firefox, Safari, and MS Edge. Feel free to test in other browsers. This might also help: https://caniuse.com/.
 
