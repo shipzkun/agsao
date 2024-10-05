@@ -3,18 +3,18 @@ All-JS custom passphrase generator, inspired by Bitwarden's passphrase generator
 
 As this runs purely client-side (i.e., in browser), it won't log the generated passphrases in a remote server. The only remote request it does is when loading wordlists; after that, no HTTP requests will be performed.
 
-The library is coded in vanilla JS (i.e., no jQuery, lodash, or other JS frameworks). 
+The library is coded in vanilla JS (i.e., no jQuery, lodash, or other JS frameworks).
 
 This is intended to run inside modern browsers. The following modern JS features are used:
 - async/await
 - Promises
 - for...in
-- for...of 
+- for...of
 - JS classes
 - JS private class features
 - anonymous functions
 
-I personally tested this in latest versions of Firefox and MS Edge. Feel free to test in other browsers. This might also help: https://caniuse.com/.
+I personally tested this in latest versions of Firefox, Safari, and MS Edge. Feel free to test in other browsers. This might also help: https://caniuse.com/.
 
 It might run in nodeJS or other non-browser contexts. Since I had no need for those, I haven't tested this in those contexts. Again, feel free to test.
 
@@ -28,7 +28,7 @@ Live usage: https://arden-chan.party/ilo_agsao
 <script src="/path/to/agsao.js" type="module"></script>
 <!-- You will also need an entropy calculator. Import it now. -->
 
-<!-- 
+<!--
 General flow:
 - Load the library
 - Set the configs (explained in sections below):
@@ -40,8 +40,8 @@ General flow:
 
 <script>
 Agsao a = new Agsao()
-  
-a.entropy_calculator = entropy_calculator_function 
+
+a.entropy_calculator = entropy_calculator_function
 a.configs = {        // library defaults
   wordlen_min : 4,
   wordlen_max : 7,
@@ -67,15 +67,16 @@ for (let i=0; i<10; i++) {
       console.log("Passphrase: "+res.data.phrase)
       console.log("Entropy: "+res.data.entropy)
     }
-  });   
+  });
 }
 </script>
 ```
 
 # Configurations
 ```js
-a.entropy_calculator = entropy_calculator_function 
-a.configs = {        // library defaults
+a.entropy_calculator = entropy_calculator_function
+// library defaults
+a.configs = {
   wordlen_min : 4,
   wordlen_max : 7,
   addnum : "end",
@@ -90,8 +91,8 @@ a.configs = {        // library defaults
 }
 a.wordlists = ["http://wordlist1_url", "http://wordlist2_url"]
 ```
-- `entropy_calculator`: a JS function to calculate passhprase entropy. 
-  - This must be a function that accepts a passphrase and outputs an entropy number. 
+- `entropy_calculator`: a JS function to calculate passhprase entropy.
+  - This must be a function that accepts a passphrase and outputs an entropy number.
   - For instance, using https://github.com/EYHN/PasswordQualityCalculator, you can set:
     ```js
     // assuming you've imported the library above using
@@ -134,7 +135,7 @@ a.wordlists = ["http://wordlist1_url", "http://wordlist2_url"]
   - `msg`: error message why the generation failed
   - `data`
     - `phrase`: The generated passphrase
-    - `entropy`: The entropy of the generated passphrase 
+    - `entropy`: The entropy of the generated passphrase
   - This function is asynchronous and returns a Promise. You will need to handle that accordingly, like so:
   ```js
   a.generate().then(res => {
@@ -144,8 +145,8 @@ a.wordlists = ["http://wordlist1_url", "http://wordlist2_url"]
       console.log("Passphrase: "+res.data.phrase)
       console.log("Entropy: "+res.data.entropy)
     }
-  });   
+  });
   ```
-  
+
 # What's with the name?
-*Agsao* <code>[ɐg.sɐ.'o]</code> means *to speak* in Ilocano. Given the nature of the service, it's close enough, don't you think? 
+*Agsao* <code>[ɐg.sɐ.'o]</code> means *to speak* in Ilocano. Given the nature of the service, it's close enough, don't you think?
